@@ -58,6 +58,44 @@
   Ctrl-r => redo your last action
 
 9. Emacs
+  Buffer in emacs is what your text resides in.
+
+10. Emacs Manipulate Files
+  C => Ctrl
+  M => Meta or Alt
+  C-x C-s => Save a file
+  C-x C-w => Save file as
+  C-x s => Save all
+  C-x C-f => Open a file
+    This will prompt you to type a filename to open. If you do not have a file   that already exists, it will create a new file.
+
+11. Emacs Buffer Navigation
+  C-x b => switch buffer
+  C-x right arrow => right-cycle through buffer
+  C-x left arrow => left-cycle through buffer
+  C-x k => Close the buffer
+  C-x 2 => Split the current buffer in one screen
+  C-x o => move between these buffers
+  C-x 1 => Set a single buffer as the current screen
+
+12. Emacs Editing
+  C-up arrow: move up one paragraph
+  C-down arrow: move down one paragraph
+  C-left arrow: move one word left
+  C-right arrow: move one word right
+  M-> : move to the end of the buffer
+  C-space key => Select text
+  C-w: cut
+  C-y: yank
+
+13. Emacs Exiting and Help
+  C-x C-c : To close out of emacs
+  C-h C-h : help menu
+  C-x u : Undo
+  
+
+  
+  
 
   
   
