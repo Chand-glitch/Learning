@@ -1,0 +1,120 @@
+stdout (>)
+  echo hello world > peanuts.txt
+  echo hello world >> peanuts.txt
+  > - redirection operator that allows us the change where standard output goes.
+  >> - appends to the end of the file without redirecting.
+
+stdin (<)
+  cat < peanuts.txt > banana.txt
+  Normally in the cat command, you send a file to it and that file becomes the stdin, in this case, we redirected peanuts.txt to be out stdin. Then the output of cat peanuts.txt which would be Hello World gets redirected to another file called banana.txt.
+
+stderr
+  A file descriptor is a non-negative number that is used to access a file or stream.
+  stdin => 0
+  stdout => 1
+  stderr => 2
+  ls /fake/directory 2> peanuts.txt
+  ls /fake/directory > peanuts.txt 2>&1 
+  OR
+  ls /fake/directory &> peanuts.txt
+  This sends results of ls /fake/directory to the peanuts.txt file and then it redirects stderr to the stdout via 2>&1.
+  ls /fake/directory 2> /dev/null
+  => Any data written to /dev/null vanishes or disappears
+  ls /fake/directory >> /dev/null 2>&1
+
+pipe and tee
+  $ ls -la /etc | less 
+  The pipe operator |, represented by a vertical bar, allows us to get the stdout of a command and make that the stdin to another process.
+  $ ls | tee peanuts.txt
+  => Reads standard input, then writes the output of a program to standard output and simultaneously copies it into the specified file or files.
+  $ ls | tee peanuts.txt banan.txt
+  
+env (Environment)
+  echo $HOME => path to home directory
+  echo $USER => username
+  env
+  echo $PATH
+  
+cut
+  echo 'The quick brown; fox jumps over the lazy      dog' > sample.txt
+  cut -c 5 sample.txt => 5th character
+  cut -f 2 sample.txt => cuts text based off of fields
+    By default it uses TABs as delimiters
+  cut -f 1 -d ";" sample.txt
+    This will change the TAB delimiter to a ";" delimiter
+  cut -c 5-10 sample.txt
+  cut -c 5- sample.txt
+  cut -c -5 sample.txt
+  
+paste
+  merges lines togethr in a file.
+  paste -s sample2.txt
+  paste -d ' ' -s sample2.txt
+    Default delimiter for paste is TAB and it is changed to  ' '
+   
+head
+  By default the head command will show you the first 10 lines in a file.
+  head /var/log/syslog
+  head -n 15 /var/log/syslog
+  -n flag stands for number of lines.
+  head -c 15 /var/log/syslog
+  
+tail
+  By default the tail command will show you the last 10 lines of a file.
+  tail /var/log/syslog
+  tail -n 10 /var/log/syslog
+  tail -f /var/log/syslog
+    follows the file as it goes.
+    
+expand and unexpand
+  expand sample.txt
+  expand sammple.txt > result.txt
+  unexpand -a result.txt
+  
+join and split
+  Allows you to join multiple files together by a common field
+  join file1.txt file2.txt
+  To join unidentical fields
+    join -1 2 -2 1 file1.txt file2.txt
+    -1 refers to file1.txt and -2 refers to file2.txt
+  split somefile
+  
+sort
+  The sort command is useful for sorting lines ascending.
+  sort file1.txt
+  sort -r file1.txt => Reverse sort
+  sort -n file1.txt => sort via numerical value
+  ls /etc | sort -rn
+  
+tr (Translate)
+  Allows you to translate a set of characters into another set of characters.
+  tr a-z A-Z
+  tr -d ello
+  hello
+  
+uniq (Unique)
+  For parsing text. (remove duplicates)
+  uniq reading.txt
+  uniq -c reading.txt => count of how many occurrences of a line.
+  uniq -u reading.txt => get unique values
+  uniq -d reading.txt => get duplicate values
+  sort reading.txt | uniq
+  uniq -uc
+  
+wc and nl
+  wc => word count
+  nl => number lines
+  wc /etc/passwd
+  wc -l /etc/passwd => number of lines
+  wc -w /etc/passwd => number of words
+  wc -c /etc/passwd => number of bytes
+  nl file.txt
+  
+grep
+  Allows you to search files for characters that match a certain pattern.
+  grep fox sample.txt
+  grep -i somepattern somefile => case insensitive
+  env | grep -i User
+  ls /somedir | grep '.txt$'
+  grep -E
+  grep -F
