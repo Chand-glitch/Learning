@@ -1,0 +1,53 @@
+1. File Permissions
+  ls -l Desktop/
+    drwxr-xr-x 2 kali kali   4096 Aug 12 17:11 Inflancer
+    1. Filetype => directory(d) regular file(-)
+    2. Permissions => grouped into 3 bits each (user permissions, group permissions, other permissions)
+      r: readable
+      w: writable
+      x: executable (basically an executable program)
+      -: empty
+
+2. Modifying Permissions
+  chmod u+x myfile => change permission on myfile by adding executable permission bit on the user set.
+  chmod u-x myfile => removing permission bit on a file
+  chmod ug+w => adding multiple permission bits on a file
+  chmod 755 myfile => change permissions using numerical format
+    4: read permission
+    2: write permission
+    1: execute permission
+
+3. Ownership Permissions
+  sudo chown patty myfile => Modify user ownership
+    This command will set the owner of myfile to patty.
+  sudo chgrp whales myfile => Modify group ownership
+    This will set the group of myfile to whales.
+  sudo chown patty:whales myfile => Modify both user and group ownership at the same time
+
+4. Umask => Change the default set of permissions
+  This command takes 3 bit permission set
+  umask 021
+    User has access to everything, Take away groups write permission, For others take awat executable permission
+  umask 022
+    User has access to everything, but group and others write permission is taken away
+
+5. Setuid (SUID)
+  sudo chmod u+s myfile
+  sudo chmod 4755 myfile
+    s => SUID
+    S => SUID but doesnt have execute permissions
+
+6. Setgid (SGID)
+  ls -l /usr/bin/wall
+    -rwxr-sr-x 1 root tty 19024 Dec 14 11:45 /usr/bin/wall
+  sudo chmod g+s myfile
+  sudo chmod 2555 myfile
+    The numerical representation for SGID is 2.
+
+7. Process permissions
+  
+
+
+
+
+    
