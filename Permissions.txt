@@ -45,6 +45,28 @@
     The numerical representation for SGID is 2.
 
 7. Process permissions
+  Effective user ID => When you launch a process, it runs with the same permissions as the user or group that ran it. (provides access rights). If bob ran the touch command, the process would run as him and any files he created would be under his ownership.
+  Real user ID => ID of the user that launched the process. Used to track down the user who launches the process.
+  Saved user ID => Allows process to switch between the effective UID and real UID, and vice versa. This is useful because we don't want our process to run with elevated privileges all the time.
+
+watch -n a "ps aux | grep passwd"
+passwd
+
+8. The Sticky Bit (t)
+  This permission bit, "sticks a file/directory" this means that only the owner or the root user can delete or modify the file.
+ls -ld /tmp
+  drwxrwxrwt 13 root root 4096 Feb  7 08:55 /tmp
+sudo chmod +t mydir
+sudo chmod 1755 mydir
+
+mkdir mydir
+ls -ld mydir
+sudo chmod +t mydir
+ls -ld mydir
+
+The numerical representation for the sticky bit is 1.
+
+
   
 
 
