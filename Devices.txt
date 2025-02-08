@@ -1,2 +1,83 @@
 1. /dev directory
-  
+  ls /dev
+
+2. device types
+  ls -l /dev
+    drwxr-xr-x  2 root root           260 Feb  8 11:49 block
+    crw-rw----  1 root tty         7,  69 Feb  8 11:49 vcsu
+      Permissions
+      Owner
+      Group
+      Major Device Number
+      Minor Device Number
+      Timestamp
+      Device Name
+    Device files
+      c - character
+      b - block
+      p - pipe
+      s - socket
+    Character Device
+      These devices transfer data, but one a character at a time.
+    Block Device
+      These devices transfer data, but in large fixed-sized blocks.
+    Pipe Device
+      Named pipes allow two or more processes to communiccate with each other
+    Socket Device
+      Socket devices facilitate communication between processes, 
+    Device Characterization
+    Major device Number
+        Represents the device driver 
+    Minor device Number
+        Tells which unique device it is in this driver class
+
+3. Device Names
+  SCSI Devices
+    Small Computer System Interface
+    Protocol used for allowing communication between disks, printers, scanners and other peripherals to your system.
+    /dev/sda - First hard disk
+    /dev/sdb - Second hard disk
+    /dev/sda3 - Third partition on the first hard disk
+
+  Pseudo Devices
+    Not really connected to your system
+    /dev/zero - accepts and discards all input, produces a continuous stream of NULL (zero value) bytes
+    /dev/null - accepts and discards all input, produces no output
+    /dev/random - produces random numbers
+
+  PATA Devices
+    Older devices
+    /dev/hda - First hard disk
+    /dev/hdd2 - Second partition on 4th hard disk
+
+4. sysfs
+  A virtual filesystem, most often mounted to the /sys directory.
+  Detailed information on devices.
+  ls /sys/block/sda
+
+5. udev
+  mknod /dev/sdb1 d b 3
+    To make node
+  udevadm info --query=all --name/dev/sda
+    To view information for a device
+
+6. lsusb, lspci, lssci
+  lsusb => listing usb devices
+  lspci => listing pci devices
+  lssci => listing SCSI devices
+
+7. dd
+  For converting and copying data
+  It reads input from a file or data stream and writes it to a file or data stream.
+  dd if=/home/pete/backup.img of=/dev/sdb bs=1024
+    This command is copying the contents of backup.img to /dev/sdb
+    It will copy the data in blocks of 1024 bytes
+    if=file - Input file, read from a file instead of standard input
+    of=file - Output file, write to a file instead of standard output
+    bs=bytes - Block size, it reads and writes this many bytes of data at a time.
+    count=number - Number of blocks to copy
+  dd if=/home/pete/backup.img of=/dev/sdb bs=1M count=2
+    
+
+
+      
