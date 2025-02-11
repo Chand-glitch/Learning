@@ -1,0 +1,15 @@
+1. Boot Process Overview
+  1. BIOS
+    Basic Input/Output System
+    Main job is to load up the bootloader.
+    Makes sure that all the hardware is good to go.
+  2. Bootloader
+    Loads the kernel into memory and then starts the kernel with a set of kernel parameters.
+  3. Kernel
+    Loads up the init process
+    Initializes devices and memory
+  4. Init
+    First process to get started
+
+2. BIOS
+    
