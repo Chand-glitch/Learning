@@ -1,0 +1,94 @@
+1. Software Distribution
+  Debian(.deb) => Debian, Ubuntu, LinuxMint, etc.
+  Red Hat(.rpm) => Red Hat Enterprise Linux, Fedora, CentOS, etc.
+
+2. Package Repositories
+  /etc/apt/sources.list
+
+3. tar and gzip
+  Compressing files with gzip
+    gzip mycoolfile => to zip file
+    gunzip mycoolfile.gz => to unzip file
+  Creating archives with tar
+    tar cvf mytarfile.tar mycoolfile1 mycoolfile2
+    c - create
+    v - tell the program to be verbose and let us see what it's doing
+    f - the filename of the tar file has to come after this option, if you're creating a tar file you'll have to come up with a name
+  Unpacking archives with tar
+    To extract the contents of a tar file
+    tar xvf mytarfile.tar
+      x - extract
+      v - tell the program to be verbose and let us see what it's doing
+      f - the file you want to extract
+  Compressing/uncompressing archives with tar and gzip
+      z - tells tar to use the gzip or gunzip utility
+    tar czf myfile.tar.gz => Create a compressed tar file
+    tar xzf file.tar => Uncompress and unpack
+  eXtract all Zee Files
+
+4. Package Dependencies
+  Helps packages to run
+
+5. rpm and dpkg
+  Install a package
+    Debian : dpkg -i some_deb_package.deb
+    RPM : rpm -i some_rpm_package.rpm
+      i stands for install
+  Remove a package
+    Debian : dpkg -r some_deb_package.deb
+    RPM : rpm -e some_rpm_package.rpm
+      Debian: r for remove
+      RPM: e for erase
+  List installed packages
+    Debian : dpkg -l
+    RPM : rpm -qa
+      Debian: l for list
+      RPM: q for query and a for all
+
+6. yum and apt
+  Install a package from a respository
+    Debian: apt install package_name
+    RPM: yum install package_name
+  Remove a package
+    Debian: apt remove package_name
+    RPM: yum erase package_name
+  Updating packages for a repository
+    Debian: apt update; apt upgrade
+    RPM: yum update
+  Get information about an installed package
+    Debian: apt show package_name
+    RPM: yum info package_name
+
+7. Compile Source Code
+  sudo apt install build-essential
+  tar -xzvf package.tar.gz
+
+  ./configure
+    ./ => execute a script
+  make
+  sudo make install
+  sudo make uninstall
+  sudo checkinstall
+    This command will make a .deb file for you that you can easily install and uninstall.
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

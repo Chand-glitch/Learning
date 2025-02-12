@@ -1,0 +1,103 @@
+1. regex (Regular Expressions)
+  Pattern based selection
+  Test string: sally sells seashells 
+               by the seashore
+  Beginning of a line with ^
+    ^by
+  End of a line with $
+    seashore$
+  Matching any sinlge character with .
+    b.
+  Bracket notation with []
+    d[iou]g
+      would match : dig, dug, dog
+    d[^i] => anything except the character within the bracket
+      would match : dog dug but not dig
+    d [a-c]g => ranges to increase the amount of characters you want to use
+      will match patterns like dag, dbg, dcg
+    Case Sensitive
+    gre [regular expression here] [file]
+2. Text Editors
+  vim
+  emacs
+3. Vim (Vi Improved)
+
+4. Vim Search Patterns
+  /key => To search for an expression in a file
+  "n" => to go forward
+  "N" => to go backward
+  ? => will search the text file backwards
+
+5. Vim Navigation
+  h or the left arrow => will move you left one character
+  k or the up arrow => will move you up one line
+  j or the down arrow => will move you down one line
+  l or the right arrow => will move you right one character
+
+6. Vim Appending Text
+  i => insert text before the cursor
+  O => insert text on the previous line
+  o => insert text on the next line
+  a => append text after the cursor
+  A => append text at the end of the line
+
+7. Vim Editing
+  x => used to cut the selected text also used for deleting characters
+  dd => used to delete the current line
+  y => yank or copy whatever is selected
+  yy => yank or copy the current line
+  p => paste the copied text before the cursor
+
+8. Vim Saving and Exiting
+  :w => writes or saves the file
+  :q => quit out of vim
+  :wq => write and then quit
+  :q! => quit out of vim without saving the file
+  ZZ => equivalent of :wq, but one character faster
+  u => undo your last action
+  Ctrl-r => redo your last action
+
+9. Emacs
+  Buffer in emacs is what your text resides in.
+
+10. Emacs Manipulate Files
+  C => Ctrl
+  M => Meta or Alt
+  C-x C-s => Save a file
+  C-x C-w => Save file as
+  C-x s => Save all
+  C-x C-f => Open a file
+    This will prompt you to type a filename to open. If you do not have a file   that already exists, it will create a new file.
+
+11. Emacs Buffer Navigation
+  C-x b => switch buffer
+  C-x right arrow => right-cycle through buffer
+  C-x left arrow => left-cycle through buffer
+  C-x k => Close the buffer
+  C-x 2 => Split the current buffer in one screen
+  C-x o => move between these buffers
+  C-x 1 => Set a single buffer as the current screen
+
+12. Emacs Editing
+  C-up arrow: move up one paragraph
+  C-down arrow: move down one paragraph
+  C-left arrow: move one word left
+  C-right arrow: move one word right
+  M-> : move to the end of the buffer
+  C-space key => Select text
+  C-w: cut
+  C-y: yank
+
+13. Emacs Exiting and Help
+  C-x C-c : To close out of emacs
+  C-h C-h : help menu
+  C-x u : Undo
+  
+
+  
+  
+
+  
+  
+    
+  

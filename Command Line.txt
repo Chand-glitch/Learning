@@ -1,0 +1,101 @@
+The shell
+
+pwd
+
+cd
+  / is a root directory.
+  cd . (current directory) => This is the directory you are currently in.
+  cd .. (parent directory) => Takes you to the directory above your current.
+  cd ~ (home directory) => This directory defaults to your "home directory".
+  cd - (previous directory) => This will take you to the previous directory you were just at.
+  
+ls 
+  Filenames that start with . are hidden. 
+  ls -a => view hidden file.
+  ls -l => detaild list of files.
+  ls -R => recursively list directory contents.
+  ls -r => reverse order while sorting.
+  ls -t => sort by modification time, newest first.
+  
+touch
+  To make a new file.
+  touch mysuperduperfile
+  
+file
+  file banana.jpg
+  
+cat 
+  Displays file contents but it can combine multiple files and show you the output of them.
+  cat dogfile birdfile
+  
+less
+  less /home/pete/Documents/text1
+    q => Used to quit out of less and go back to your shell.
+    Page up, Page down, Up and Down => Navigate using the arrow keys and page keys.
+    g => Moves to the beginning of the text file.
+    G => Moves to the end of the text file.
+    /search => You can search for specific text inside the text document. Prefacing the words you want to search with /
+    h => If you need a little help about how to use less while you're in less. use help.
+    
+history
+  Ctrl-R
+  
+cp
+  cp mycoolfile /home/pete/Documents/cooldocs [cp filename destination]
+  * the wildcard of wildcards, used to represent all single characters or any string.
+  ? used to represent one character
+  [] used to represent any character within the brackets.
+  cp * .jpg /home/pete/Pictures
+    To copy all files with the .jpg extension in your current directory to the Pictures directory.
+  cp -r Pumpkin/ /home/pete/Documents
+    To copy the files recursively.
+  cp -i mycoolfile /home/pete/Pictures
+    To prompt you before overwriting a file.
+    
+mv
+  Moving ad renaming file
+  mv oldfile newfile
+  mv oldfile /home/pete/Documents
+  mv file_1 file_2 /somedirectory
+  mv directory1 directory2 => rename directories
+  mv -i directory1 directory2 => to prompt before overwriting anything
+  mv -b directory1 directory2 => to create a backup of a file and old version will be renamed with a ~.
+  
+mkdir
+  mkdir books
+  mkdir paintings
+  mkdir books paintings
+  mkdir -p books/hemmingway/favorites => subdirectories
+rm
+  rm file1
+  rm -f file1 => force remove
+  rm -i file1 => to prompt whether you want to actually remove the files or directories.
+  rm -r file1 => to remove all the files and subdirectories of a directory
+  rmdir directory => to remove a directory
+
+find
+  find /home -name puppies.jpg
+  find /home -type d -name MyFolder [d => directory]
+
+help
+  help echo
+  echo --help
+  
+man
+  manuals for a command
+  man ls
+
+whatis
+  provides a brief description of command line programs.
+  whatis cat
+  blur
+
+alias
+  alias foobar= 'ls -la'
+    Now, instead of typing ls -la, you can type foobar
+  If you want to save your alias after reboot, add a permanent alias in : ~/.bashrc
+  unalias foobar
+
+ exit OR logout
+  to exit from the shell
+  

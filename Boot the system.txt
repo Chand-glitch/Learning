@@ -1,0 +1,48 @@
+1. Boot Process Overview
+  1. BIOS
+    Basic Input/Output System
+    Main job is to load up the bootloader.
+    Makes sure that all the hardware is good to go.
+  2. Bootloader
+    Loads the kernel into memory and then starts the kernel with a set of kernel parameters.
+  3. Kernel
+    Loads up the init process
+    Initializes devices and memory
+  4. Init
+    First process to get started
+
+2. BIOS
+  BIOS
+    Performs system integrity checks
+    Main goal is to find system bootloader
+  UEFI
+    Unified extensible firmware interface
+    Stores all the information about startup in an .efi file
+
+3. Boot Process: Bootloader
+  Responsibilities: Booting into an operating system, it can also be used to boot to non-linux operating systems.
+                    Select a kernel to use
+                    Specify kernel parameters
+  Boot parameters
+    initrd - Specifies the location of initial RAM disk
+    BOOT_IMAGE - This is where kernel image is located
+    root - The location of the root filesystem, the kernel searches inside this location to find init. It is often represented by it's UUID or the device name such as /dev/sda1
+    ro - This parameter is pretty standard, it mounts the filesystem as read-only mode.
+    quiet - This is added so that you don't see display messages that are going on in the background during boot.
+    splash - This lets the splash screen be shown.
+
+4. Boot Process: Kernel
+  Initrd vs Initramfs
+    The kernel relies on a temporary root filesystem to load essential drivers during boot. Older Linux versions used initrd (initial ram disk), which the kernel mounted to access necessary modules before switching to the real root filesystem. Modern systems use initramfs, a temporary root filesystem built into the kernel, eliminating the need for a separate initrd file.
+  Mounting the root filesystem
+    After loading the necessary modules, the kernel creates a root device and mounts the root partition in read-only mode to allow fsck to check for system integrity. Once verified, the root filesystem is remounted in read-write mode. Finally, the kernel locates and executes the init program to start the user-space processes.
+
+5. Boot Process : Init
+  System V init(sysv)
+    Sequentially starts and stops processes, based on startup scripts.
+  Upstart
+    Upstart uses the idea of jobs and events and works by starting jobs that perfroms certain actions in response to events.
+  Systemd
+    Goal oriented
+    If you have a goal, it tries to satisfy the goal's dependencies to complete the goal.
+

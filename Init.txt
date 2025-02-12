@@ -1,0 +1,68 @@
+1. System V Overview
+  The main purpose of init is to start and stop essential processes on the system.
+  0 : shutdown
+  1: Singler User Mode
+  2: Multiuser mode without networking
+  3: Multiuser mode with networking
+  4: Unused
+  5: Multiuser mode with networking and GUI
+  6: Reboot
+  The scripts are located in /etc/rc/d/rc[runlevel number].d or /etc/init.d
+
+2. System V Service
+  List services => service --status-all
+  Start a service => sudo service networking start
+  Stop a service => sudo service networking stop
+  Restart a service => sudo service networking restart
+
+3. Upstart Overview
+  ls /etc/init
+  Way that upstart works:
+  1. First, it loads up the job confifurations from /etc/init
+  2. Once a startup event occurs, it will run jobs triggered by that event.
+  3. These jobs will make new events and then those events will trigger more jobs
+  4. Upstart continues to do this until it completes all the necessary jobs
+
+4. Upstart Jobs
+  View jobs => initctl list
+  View specific job => initctl status networking
+  Manually start a job => sudo initctl start networking
+  Manually stop a job => sudo initctl stop networking
+  Manually restart a job => sudo initctl restart networking
+  Manually emit an event => sudo initctl emit some_event
+
+5. Systemd Overview
+  Systemd uses goals to get your system up and running. 
+  Typical systemd boot:
+    1. First, systemd loads its configuration files, usually located in /etc/systemd/system or /usr/lib/systemd/system
+    2. Then it determines its boot goal, which is default.target
+    3. Systemd figures out the dependencies of the boot target and activates them
+  Systemd boot target:
+    poweroff.target - shutdown system
+    rescue.target - single user mode
+    multi-user.target - multiuser with networking
+    graphical.target - multiuser with networking and GUI
+    reboot.target - restart
+  The main object that systemd works with are known as units. The most common units are:
+    service units - these are the services we've been starting and stopping, these unit files end in .service
+    Mount units - these mount filesystems, these unit files end in .mount
+    Target units - these group together other units, the files end in .target
+
+6. Systemd Goals
+  List units - systemctl list-units
+  View status of unit - systemctl status networking.service
+  Start a service - sudo systemctl start networking.service
+  Stop a service - sudo systemctl stop networking.service
+  Restart a service - sudo systemctl restart networking.service
+  Enable a unit - sudo systemctl enable networking.service
+  Disable a unit - sudo systemctl disable networking.service
+
+7. Power States
+  To shutdown your system : sudo shutdown -h now
+                            sudo shutdown -h +2
+  To restart : sudo shutdown -r now
+               sudo reboot
+
+
+
+

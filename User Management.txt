@@ -1,0 +1,54 @@
+1. Users and Groups
+  sudo
+
+2. root
+  su => substitute user
+  /etc/sudoers file => lists users who can run sudo
+  visudo => to edit the sudoers file
+
+3. /etc/passwd
+  cat /etc/passwd
+  kali:x:1000:1000:,,,:/home/kali:/usr/bin/zsh
+  root:x:0:0:root:/root:/bin/bash
+    1. Username
+    2. User's password
+        x => means the password is stored in the /etc/shadow file
+        * => means the user doesn't have login access
+        blank => means that the user doesn't have a password
+    3. The user ID => root has UID of 0, kali has UID of 1000
+    4. The group ID =>
+    5. GECOS field => This is used to generally leave comments about the user or accounts such as their real name or phone number, it is comma delimited.
+    6. User's home directory
+    7. User's shell => bash, zsh, etc.
+  vipw => to add users and modify information
+
+4. /etc/shadow
+  used to store information about user authentication.
+  sudo cat /etc/shadow
+    root:*:19691:0:99999:7:::
+      1. Username
+      2. Encrypted Password
+      3. Date of last password changed: expressed as the number of days since Jan 1, 1970. If there is a 0 that means the user should change their password the next time they login.
+      4. Minimum password age : Days that a user will have to wait before being able to change their password again
+      5. Maximum password age: Maximum number of days before a user has to change their password
+      6. Password warning period: Number of days before a password is going to expire
+      7. Password inactivity period: Number of days after a password has expired to allow login with their password
+      8. Account expiration date: Date that user will not be able to login
+      9. Reserved field for future use
+
+5. /etc/group
+  allows for different groups with different permissions
+  cat /etc/group
+    root:x:0:
+      1. Group name
+      2. Group password
+      3. Group ID
+      4. List of users: You can manually specify users you want in a specific group
+
+6. User Management Tools
+  sudo useradd bob => adding user
+  sudo userdel bob => removing user
+  passwd bob => changing password
+
+
+    

@@ -1,0 +1,57 @@
+1. Overview of the kernel
+  Core of the operating system
+  Three levels of an operating system : Hardware, Kernel, User space
+  The kernel's job is to talk to the hardware to make sure it does what we want our processes to do.
+
+2. Privilege Levels
+  In kernel mode, the kernel has complete access to the hardware, it controls everything.
+  In user space mode, there is a very small amount of safe memory and CPU that you are allowed to access.
+  Ring #3 is the privilege that user mode applications run in
+  Ring #0 is the privilege that the kernel runs in
+
+3. System Calls
+  System calls (syscall) provide user space processes a way to request the kernel to do something for us.
+  strace ls => useful for debugging how a program executed.
+
+4. Kernel Installation  
+  uname -r => To see the kernel version
+  Linux kernel installation
+    sudo apt install linux-generic-lts-vivid
+    sudo apt install 3.19.0-43-generic
+  sudo apt dist-upgrade => upgrades kernel version
+
+5. Kernel Location
+  vmlinuz - this is the actual linux kernel
+  initrd - the initrd is used as a temporary file system, used before learning the kernel
+  System.map - symbolic lookup table
+  config - kernel configuration settings, if you are compiling your own kernel, you can set which modules can be loaded.
+
+6. Kernel Modules
+  Kernel modules are pieces of code that can be loaded and unloaded into the kernel on demand.
+  View a list of currently loaded modules => lsmod
+  Load a module => sudo modprobe bluetooth
+  Remove a module => sudo modprobe -r bluetooth
+
+  Load on bootup
+
+You can also load modules during system boot, instead of temporarily loading them with modprobe (which will be unloaded when you reboot). 
+Just modify the /etc/modprobe.d directory and add a configuration file in it like so:
+
+pete@icebox:~$ /etc/modprobe.d/peanutbutter.conf
+
+options peanut_butter type=almond
+
+A bit of a outlandish example, but if you had a module named peanut_butter and you wanted to add a kernel parameter for type=almond,
+you can have it load on startup using this configuration file. 
+Also note that kernel modules have their own kernel parameters so you'll want to read about the module specifically to find out more.
+
+Do not load on bootup
+
+You can also make sure a module does not load on bootup 
+by adding a configuration file like so:
+
+pete@icebox:~$ /etc/modprobe.d/peanutbutter.conf
+
+blacklist peanut_butter
+  
+  
