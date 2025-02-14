@@ -1,0 +1,21 @@
+1. System Logging
+  less /var/log/syslog
+
+2. syslog
+  less /etc/rsyslog.d/50-default.conf
+
+3. General Logging
+  /var/log/messages => contains all non-critical and non-debug messages, includes messages logged during bootup (dmesg), auth, cron, daemon,etc.
+  /var/log/syslog => logs everything except auth messages, it's extremenly useful debugging errors on your machine.
+
+4. Kernel Logging
+  /var/log/dmesg => shows us information about hardware drivers, kernel information and status during bootup and more
+  /var/log/kern.log => logs kernel information and events on your system, it also logs dmesg output.
+
+5. Authentication Logging
+  /var/log/auth.log
+    helpful to look at if you are having issues logging in
+    contains system authorization logs, such as user login and the authentication method used.
+
+6. Managing Log Files
+  logrotate
