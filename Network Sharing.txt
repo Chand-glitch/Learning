@@ -1,0 +1,62 @@
+1. File Sharing Overview
+  To copy a file over from local host to a remote host
+    scp myfile.txt usrname@remotehost.com:/remote/directory
+  To copy a file from a remote host to your local host
+    scp username@remotehost.com:/remote/directory/myfile.txt /local/directory
+  To copy over a directory from your local host to a remote host
+    scp -r mydir usrname@remotehost.com:/remote/directory
+
+2. rsync
+  Rsync uses a special algorithm that checks in advanced if there is already data that you are copying to and will only copy over the differences.
+  It also verifies the integrity of a file you are copying over with checksums.
+  Some commonly-used rsync options:
+    v - verbose output
+    r - recursive into directories
+    h - human readable output
+    z - compressed for easier transfer, great for slow connections
+
+  Copy/sync files on the same host
+    rsync -zvr /my/local/directory/one /my/local/directory/two
+  Copy/sync files to local host from a remote host
+    rsync /local/directory username@remotehost.com:/remote/directory
+  Copy/sync files to a remote host from a local host
+    rsync username@remotehost.com:/remote/directory /local/directory
+
+3. Simple HTTP Server
+    python -m SimpleHTTPServer
+      http://IP_ADDRESS:8000
+      http://localhost:8000
+    python -m http.server
+
+4. NFS
+  Allows a server to share directories and files with one or more clients over the network.
+
+  Setting up NFS client
+    sudo service nfsclient start
+    sudo mount server:/directory /mount_directory
+  Automounting
+
+5. Samba
+  Install samba
+    sudo apt update
+    sudo apt install samba
+  Setup smb.conf
+    /etc/samba/smb.conf
+    sudo vi /etc/samba/smb.conf
+  Setup a password for Samba
+    sudo smbpasswd -a [username]
+  Create a shared directory
+    mkdir /my/directory/to/share
+  Restart the Samba service
+    sudo service smbd restart
+
+  Accessing a Samba share via Windows
+    \HOST\sharename
+  Accessing a Samba/Windows share via Linux
+    smbclient //HOST/directory -U user
+  Attach a Samba share to your system
+    sudo mount -t cifs servername:directory mountpount -o user=username,pass=password
+    
+  
+
+
