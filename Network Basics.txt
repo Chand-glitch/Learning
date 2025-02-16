@@ -1,2 +1,64 @@
 1. Network Basics
+  ISP - Internet Service Provider
+  Router - Allows each machine on the network to connect to the Internet.
+  WAN - Wide Area Network, the network that encompasses everything between your router and a wider network such as the internet.
+  WLAN - Wireless Local Area Network, the network between your router and any wireless devices you may have such as laptops.
+  LAN - Local Area network, this is the network between your router and any wired devices such as Desktop PCs.
+  Hosts - Each machine on a network is known as a host.
+
+2. OSI Model
+3. TCP/IP Model
+  Protocols work together to specify how data should be gathered, addressed, transmitted and routed through a network.
+  1. Application Layer
+    It determines how your computer's programs (such as your web browser) interface with the transport layer services to view the data that gets sent or received.
+    This layer uses:
+    HTTP (Hypertext Transfer Protocol) - used for the webpages on the Internet.
+    SMTP (Simple Mail Transfer Protocol) - electronic mail (email) transmission
+  2. Transport Layer
+    includes checking the correct ports, the integrity of the data, and basically delivering our packets.
+    This layer uses:
+    TCP (Transmission Control Protocol) - reliable data delivery
+    UDP (User Datagram Protocol) - unreliable data delivery
+
+  3. Network Layer
+    This layers specifies how to move packets between hosts and across networks.
+    This layer uses:
+    IP (Internet Protocol) - Helps route packets from one machine to another.
+    ICMP (Internet Control Message Protocol) - Helps tell us what is going on, such as error messages and debugging information.
+
+  4. Link Layer
+    This layer specifies how to send data across a physical piece of hardware.
+
+4. Network Addressing
+  MAC Addresses
+    Hardware address
+    When you want to get access to the internet, your machine needs to have a device called a Network Interface Card. This network adapter has its own hardware address that's used to identify your machine. 
+    For example, Dell has 00-14-22, so a network adapter from Dell could have a MAC address like: 00-14-22-34-B2-C2. 
+
+  IP Addresses
+    Used to identify device on a network
+
+  Hostnames
+    Hostnames take your IP address and allow you to tie that address to a human readable name. Instead of remembering 192.12.41.4 you can just remember myhost.com.
+
+5. Application Layer
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
