@@ -42,8 +42,51 @@
     Hostnames take your IP address and allow you to tie that address to a human readable name. Instead of remembering 192.12.41.4 you can just remember myhost.com.
 
 5. Application Layer
-  
+  Encapsulates the data
+  Communicates with the transport layer through a specified portand sends data through it.
+  Application layer is used to present the packet data in a user friendly format.
 
+6. Transport Layer
+  It breaks our data into chunks that will be transported and put back together in the correct order known as segments.
+  Ports
+  UDP
+  TCP
+    The client(connecting process) sends a SYN segment to the server to request a connection.
+    Server sends the client a SYN-ACK segment to acknowledge the client's connection request
+    Client sends an ACK to the server to acknowledge the server's connection request
+
+7. Network Layer
+  The network layer determines the routing of our packets from our source host to a destination host.
+  Smaller networks are known as subnets
+  Network layer receives the segment coming from the transport layer and encapsulates this segment in an IP packet then attaches the IP address of the source host and the IP address of the destination host to the packet header.
+
+8. Link Layer
+  Packet is encapsulated once more into something called a frame. 
+  The frame header attaches the source and destination MAC addresses of our hosts, checksums and packet separators so that the receiver can tell when a packet ends. 
+  ARP (Address Resolution Protocol)
+    ARP is used within the same network.
+    We would use a routing system to determine the next router that would receive the packet and once we were on the same network, we could use ARP. 
+
+  Packet Traversal
+
+    Pete sends Patty an email: this data gets sent to the transport layer.
+    The transport layer encapsulates the data into a TCP or UDP header to form a segment, the segment attaches the destination and source TCP or UDP port, then the segment is sent to the network layer.
+    The network layer encapsulates the TCP segment inside an IP packet, it attaches the source and destination IP address. Then routes the packet to the link layer.
+    The packet then reaches Pete's physical hardware and gets encapsulated in a frame. The source and destination MAC address get added to the frame.
+    Patty's receives this data frame through her physical layer and checks each frame for data integrity, then de-encapsulates the frame contents and sends the IP packet to the network layer.
+    The network layer reads the packet to find the source and destination IP that was previously attached. It checks if its IP is the same as the destination IP, which it is! It de-encapsulates the packet and sends the segment to the transport layer.
+    The transport layer de-encapsulates the segments, checks the TCP or UDP port numbers and makes a connection to the application layer based on those port numbers.
+    The application layer receives the data from the transport layer on the port that was specified and presents it to Patty in the form of the final email message
+
+9. DHCP Overview
+  Dynamic Host Configuration Protocol
+  DHCP assigns IP addresses, subnet masks and gateways to our machines.
+
+  The way DHCP gets all your dynamic host information is:
+    DHCP DISCOVER - This message is broadcasted to search for a DHCP server.
+    DHCP OFFER - The DHCP server in the network replies with an offer message. The offer contains a packet with DHCP lease time, subnet mask, IP address, etc.
+    DHCP REQUEST - The client sends out another broadcast to let all DHCP servers know which offer it accepted.
+    DHCP ACK - Acknowledgement is sent by the server.
 
 
 
