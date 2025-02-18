@@ -1,0 +1,46 @@
+1. What is a router?
+  Packet SWITCHING is basically receiving, processing and forwarding data to the destination device.
+ROUTING is a process of creating the routing table, so that we can do SWITCHING better.
+Before routing, FLOODING was used. If a router don't know which way to send a packet than every incoming packet is sent through every outgoing link except the one it arrived on. 
+
+2. Routing Table
+  sudo route -n
+  Destination
+    addresses of 0.0.0.0 this means that no address is specified or it's unknown. So if for example, I wanted to send a packet to IP address 151.123.43.6, our routing table doesn't know where that goes, so it denotes it as 0.0.0.0 and therefore routes our packet to the Gateway.
+  Gateway
+    If we are sending a packet that is not on the same network, it will be sent to this Gateway address
+  Genmask
+    This is the subnet mask, used to figure out what IP addresses match what destination.
+  Flags
+    UG - Network is Up and is a Gateway
+    U - Network is Up
+  Iface
+    This is the interface that our packet will be going out of, eth0 usually stands for the first Ethernet device on your system. 
+
+3. Path of a packet
+  Let's look at how a packet travels within its local network
+    First the local machine will compare the destination IP address to see if it's in the same subnet by looking at its subnet mask.
+    When packets are sent they need to have a source MAC address, destination MAC address, source IP address and destination IP address, at this point we do not know the destination MAC address.
+    To get to the destination host, we use ARP to broadcast a request on the local network to find the MAC address of the destination host.
+    Now the packet can be successfully sent!
+
+Let's see how a packet travels outside its network
+    First the local machine will compare the destination IP address, since its outside of our network, it does not see the MAC address of the destination host. And we can't use ARP because the ARP request is a broadcast to locally connected hosts.
+    So our packet now looks at the routing table, it doesn't know the address of the destination IP, so it sends it out to the default gateway (another router). So now our packet contains our source IP, destination IP and source MAC, however we don't have a destination MAC. Remember MAC addresses are only reached through the same network. So what does it do? It sends an ARP request to get the MAC address of the default gateway.
+    The router looks at the packet and confirms the destination MAC address, but it's not the final destination IP address, so it keeps looking at the routing table to forward the packet to another IP address that can help the packet move along to its destination. Everytime the packet moves, it strips the old source and destination MAC address and updates the packet with the new source and destination MAC addresses.
+    Once the packet gets forwarded to the same network, we use ARP to find the final destination MAC address
+    During this process, our packet doesn't change the source or destination IP address.
+
+4. Routing Protocols
+  When using routing protocols, routers communicate with other routers to collect and exchange information about the network. When they agree on how a network should look, every routing table maps out the complete topology of the network, thus "converging". When something occurs in the network topology, the convergence will temporarily break until all routers are aware of this change. 
+
+5. Distance Vector Protocols
+  Distance vector protocols determine the path of other networks using the hop count a packet takes across the network. If network A was 3 hops away and network B was next to network A, then we assume it must be 4 hops away. In distance vector protocols, the next route would be the one with the least amount of hops.
+
+6. Link State Protocols
+  They only send updates to neighboring routes. They use a different algorithm to calculate the shortest path first and construct their network topology in the form of a graph to show which routers are connected to other routers.
+
+7. Border Gateway Protocol
+BGP (Border Gateway Protocol) is the backbone of the Internet, enabling autonomous systems (like ISPs, companies, and universities) to exchange routing information. Without BGP, these networks would remain isolated.
+
+For example, if you're at Starbucks and send an email to someone at home, your data moves within Starbucks' network until it reaches a Border Gateway router. This router determines the best path for the packet to exit and travel across other networks, ensuring successful communication.
