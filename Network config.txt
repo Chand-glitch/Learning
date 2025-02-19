@@ -5,5 +5,46 @@
   To bring up or down an interface
     $ ifup eth0
     $ ifdown eth0
-  
+  To show interface information for all interfaces
+    ip link show
+  To show the statistics of an interface 
+    ip -s link show eth0
+  To show ip addresses allocated to interfaces 
+    ip address show
+  To bring interfaces up and down
+    ip link set eth0 up
+    ip link set eth0 down
+  To add an IP address to an interface
+    ip address add 192.168.1.1/24 dev eth0
+
+2. route
+  Add a new route
+    sudo route add -net 192.168.2.1/23 gw 10.11.12.3
+  Delete a route
+    sudo route del -net 192.168.2.1/23
+  To add a route
+    ip route add 192.168.2.1/23 via 10.11.12.3
+  To delete a route
+    ip route delete 192.168.2.1/23 via 10.11.12.3
+    or
+    ip route delete 192.168.2.1/23
+
+3. dhclient
+  The dhclient starts up on boot and gets a list of network interfaces from the dhclient.conf file.
+  In the dhclient.leases file, dhclinet keeps track of a list of leases across system reboots, after reading dhclient.conf, the dhclient.leases file is read to let it know what leases it's already assigned.
+  sudo dhclient
+
+4. Network Manager
+  nm-tool => reports NetworkManager's state and it's devices
+  nmcli => allows you to control and modify NetworkManager
+
+5. arp
+  arp => To view the locally stored ARP cache on our system 
+  If we send a packet to a destination that isn't in the ARP cache, the following happens:
+    The source host creates the Ethernet frame with an ARP request packet
+    The source host broadcasts this frame to the entire network
+    If one of the hosts on the network knows the correct MAC address, it will send a reply packet and frame containing the MAC address
+    The source host adds the IP to MAC address mapping to the ARP cache and then proceeds with sending the packet
+  ip neighbour show
+
   
