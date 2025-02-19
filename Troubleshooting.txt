@@ -1,0 +1,71 @@
+1. ICMP
+  Each ICMP message contains a type, code and checksum field. The type field is the type of ICMP message, the code is a sub-type and describes more information about the message and the checksum is used to detect any issues with the integrity of the message.
+  Type 0 - Echo Reply
+  Type 3 - Destination Unreachable
+    Code 0 - Network Unreachable
+    Code 1 - Host Unreachable
+    etc..etc.. 
+  Type 8 - Echo Request
+  Type 11 - Time Exceeded
+
+2. ping
+  ping -c 3 www.google.com
+  icmp_seq => The icmp_seq field is used to show the sequence number of packets sent
+  ttl => The Time To Live (ttl) field is used as a hop counter, as you make hops, it decrements the counter by one and once the hop counter reaches 0, our packet dies.
+  time => The roundtrip time it took from you sending the echo request packet to getting an echo reply. 
+
+3. traceroute
+  The traceroute command is used to see how packets are getting routed. 
+  It works by sending packets with increasing TTL values, starting with 1. 
+  So the first router gets the packet, and it decrements the TTL value by one, thus dropping the packet. 
+  The router sends back an ICMP Time Exceeded message back to us. 
+  And then the next packet gets a TTL of 2, so it makes it past the first router, but when it gets to the second router the TTL is 0 and it returns another ICMP Time Exceeded message.   
+  Traceroute works this way because as it sends and drops packets it is build a list of routers that the packets traverse, until it finally gets to its destination and gets an ICMP Echo Reply message. 
+
+4. netstat
+  Well Known Ports
+  ftp             21/tcp
+  ssh             22/tcp
+  smtp            25/tcp 
+  domain          53/tcp  # DNS
+  http            80/tcp
+  https           443/tcp
+
+  netstat
+    Netstat displays various network related information such network connections, routing tables, information about network interfaces and more, it's the swiss army knife of networking tools.
+    netstat -at
+      The netstat -a command shows the listening and non-listening sockets for network connections, the -t flag shows only tcp connections. 
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+    tcp        0      0 icebox:domain           *:*                     LISTEN
+      Proto: Protocol used, TCP or UDP.
+      Recv-Q: Data that is queued to be received
+      Send-Q: Data that is queued to be sent
+      Local Address: Locally connected host
+      Foreign Address: Remotely connected host
+      State: The state of the socket
+  LISTENING: The socket is listening for incoming connections, remember when we make a TCP connection our destination has to be listening for us before we can connect.
+  SYN_SENT: The socket is actively attempting to establish a connection.
+  ESTABLISHED: The socket has an established connection
+  CLOSE_WAIT: The remote host has shutdown and we're waiting for the socket to close
+  TIME_WAIT: The socket is waiting after close to handle packets still in the network
+
+5. Packet Analysis
+  tcpdump
+    sudo apt install tcpdump
+    sudo tcpdump -i wlan0
+    Writing tcpdump output to a file => sudo tcpdump -w /some/file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
