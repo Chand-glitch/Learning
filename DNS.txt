@@ -18,5 +18,28 @@
         Data - This field can contain an IP address if it's an A record or something else depending on the record type.
 
 3. DNS Process
+  Local DNS Server
+  Root Servers
+  Top-Level Domain
+  Authoritative DNS Server
+
+4. /etc/hosts
+  /etc/hosts
+  The /etc/hosts file contains mappings of some hostnames to IP addresses.
+  You can also manage access to hosts by modifying the /etc/hosts.deny or /etc/hosts.allow files.
+
+  /etc/resolv.conf
+  The /etc/resolv.conf file is a configuration file that specifies how a system uses DNS to resolve host names and IP addresses
+
+5. DNS Setup
+  BIND
+  DNSmasq
+  PowerDNS
+
+6. DNS Tools
+  nslookup
+    The "name server lookup" tool is used to query name servers to find information about resource records. 
+  dig
+    Dig (domain information groper) is a powerful tool for getting information about DNS name servers, it is more flexible than nslookup and great for troubleshooting DNS issues.
   
 
